@@ -20,40 +20,40 @@ lightYellow = '\033[93m'
 
 #variable setups
 quit = False
-nightmareLock = False
-nightmareTiersUnlocked = ["1", "2", "3", "4", "5"]
+nightmareLock = True
+nightmareTiersUnlocked = []
 #GAMELOOP START
 while quit == False:
     #map choice (START)
     clearTerminal()
     print("{==============Game=Setup==============}")
-    sizeChoice = input(f"{bold}Select the game size:\n {bold}1){reset}{blue} Minuscule{reset}\n {bold}2){reset}{cyan} Tiny{reset}\n {bold}3){reset}{green} Small{reset}\n {bold}4){reset}{lightYellow} Large{reset}\n {bold}5){reset}{lightYellow} Huge {reset}\n {bold}6){reset}{red} Massive {reset}\n {bold}7){reset}{red} Colossal {reset}\n {bold}{grey}<Some devices will struggle to generate the sizes below>{reset}\n {bold}8){reset}{magenta} Titanic {reset}\n {bold}9){reset}{magenta} Celestial {reset}\n{bold}{yellow}<Answer>> {reset}")
-    if sizeChoice == "2":
-        size = 50
+    sizeChoice = input(f"{bold}Select the game size:\n {bold}1){reset}{blue} Minuscule{reset}\n {bold}2){reset}{cyan} Tiny{reset}\n {bold}3){reset}{green} Small{reset}\n {bold}4){reset}{lightYellow} Large{reset}\n {bold}5){reset}{lightYellow} Huge {reset}\n {bold}6){reset}{red} Massive {reset}\n {bold}7){reset}{red} Colossal {reset}\n {bold}{grey}<Some devices may struggle to generate the sizes below>{reset}\n {bold}8){reset}{magenta} Titanic {reset}\n {bold}9){reset}{magenta} Celestial {reset}\n{bold}{yellow}<Answer>> {reset}")
+    if sizeChoice == "2": #400 rooms
+        size = 20
         print(f"{cyan}Tiny {reset}selected")
-    elif sizeChoice == "3":
-        size = 80
+    elif sizeChoice == "3": #1,600 rooms
+        size = 40
         print(f"{green}Small {reset}selected")
-    elif sizeChoice == "4":
-        size = 120
+    elif sizeChoice == "4": #6,400 rooms
+        size = 80
         print(f"{lightYellow}Large {reset}selected")
-    elif sizeChoice == "5":
-        size = 180
+    elif sizeChoice == "5": #25,600 rooms
+        size = 160
         print(f"{lightYellow}Huge {reset}selected")
-    elif sizeChoice == "6":
-        size = 270
+    elif sizeChoice == "6": #102,400 rooms
+        size = 320
         print(f"{red}Massive {reset}selected")
-    elif sizeChoice == "7":
-        size = 400
+    elif sizeChoice == "7": #409,600 rooms
+        size = 640
         print(f"{red}Colossal {reset}selected")
-    elif sizeChoice == "8":
-        size = 1000
+    elif sizeChoice == "8": #1,638,400
+        size = 1280
         print(f"{magenta}Titanic {reset}selected")
     elif sizeChoice == "9":
-        size = 2000 #High Score: 8000
+        size = 2560 #6,553,600 rooms
         print(f"{magenta}Celestial {reset}selected")
     else:
-        size = 20
+        size = 10 #100 rooms
         print(f"{blue}Minuscule {reset}selected")
     time.sleep(1)
 
@@ -124,8 +124,11 @@ while quit == False:
     print("----------------------------------------")
     time.sleep(1)
     #loading
+    loadTxt = ""
+    if sizeChoice in ["8","9"]:
+        loadTxt = f"{grey}<This may take a while>{reset}"
     
-    print(f"{bold}{green}Generating map...{reset}")
+    print(f"{bold}{green}Generating map... {loadTxt}{reset}")
     #exit, enemy placement, and player placement
     player = {"x":ran.randint(0,size-1), "y":ran.randint(0,size-1)}
     anomaly = {"x":ran.randint(0,size-1), "y":ran.randint(0,size-1)}
